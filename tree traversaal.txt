@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct abc{
+char data;
+struct abc *left,*right;
+struct abc *next;
+};
+
+struct abc *top;
+
+
+
+ void push(struct abc* root)
+{
+if(top==NULL)
+  {
+    top=root;
+   }
+else
+{root->next=top;
+top=root;
+}
+}
+
+struct abc* pop()
+{struct abc *s;
+s=top;
+top=top->next;
+return s;
+}
+
+struct abc* createnode(char d)
+{
+struct abc* temp;
+ 
+temp=(struct abc*)malloc(sizeof(struct abc));
+temp->data=d;
+temp->right=NULL;
+temp->left=NULL;
+temp->next=NULL;
+return temp;
+}
+
+void inorder(struct abc* root)
+{if(root==NULL)
+ {return;
+ }
+inorder(root->left);
+printf("%c",root->data);
+inorder(root->right);
+}
+
+void preorder(struct abc* root)
+{
+  if(root==NULL)
+    return;
+  printf("%c",root->data);
+  preorder(root->left);
+   preorder(root->right);
+}
+
+void postorder(struct abc* root)
+{
